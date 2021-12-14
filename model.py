@@ -17,9 +17,5 @@ class Device(db.Model):
 
     def save(self):
         
-        # if Device.query.filter_by(serial_number=self.serial_number, type_device_id=self.type_device_id):
-        #     return False
         db.session.add(self)
         db.session.commit()
-        # return True
-
