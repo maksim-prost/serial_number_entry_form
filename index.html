@@ -9,24 +9,29 @@
 </head>
 <body>
     <div class="container">
-        <h2>Registration Form</h2>
         <h3>{{ message }}</h3>
         {% for field, errors in form.errors.items() %}
-        {{ ', '.join(errors) }}
+            {% for error in errors %}
+                {% for er in error %}
+                     <div class="alert alert-danger" >
+                            {{ er }}
+                      </div>
+                {% endfor %}
+            {% endfor %}
         {% endfor %}
         <form class="form-horizontal" method="POST" action="">
             {{ form.csrf_token() }}
            
             <div class="form-group">
                 {{ form.serial_numbers.label }}
-                {{ form.serial_numbers() }}
+                {{ form.serial_numbers(class="form-control") }}
             </div>
     
             <div class="form-group">
                 {{ form.type_device.label }}
-                {{ form.type_device() }}
+                {{ form.type_device(class="form-control") }}
             </div>
-          
+            
             <div class="form-group">
                 {{ form.submit(class="btn btn-primary")}}
             </div>
