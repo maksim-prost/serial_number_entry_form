@@ -1,4 +1,4 @@
-from app import db, TypeDevice, Device
+from model import db, TypeDevice, Device
 
 serial_number_mask_by_device_type = {
     "D-Link DIR-300": '\d[A-Z\d]{2}[A-Z]{2}[A-Z\d]{1}[-_@]{1}[A-Z\d]{1}[a-z]{2}',
@@ -6,7 +6,6 @@ serial_number_mask_by_device_type = {
     "D-Link DIR-300 S": '\d[A-Z\d]{2}[A-Z]{2}[A-Z\d]{1}[-_@]{1}[A-Z\d]{3}',
 }
 
-# db.migrate()
 db.create_all()
 
 for type_device in serial_number_mask_by_device_type:
