@@ -1,9 +1,16 @@
-from wtforms import SubmitField, TextAreaField, SelectField
 from flask_wtf import FlaskForm
+from wtforms import SubmitField, TextAreaField, SelectField
 from wtforms.validators import ValidationError, DataRequired 
 import re
-# from sqlalchemy import exc
-from model import TypeDevice, Device, db
+from model import TypeDevice, Device
+import itertools
+
+CONVERTING_MASK_TO_REGEX ={ "N":"\d",
+                            "A":"[A-Z]",
+                            "a":"[a-z]" ,
+                            "X":"[A-Z\d]",
+                            "Z":"[-_@]", 
+                          }
 
 
 class SerialNumberEntryForm(FlaskForm):
@@ -27,10 +34,13 @@ class SerialNumberEntryForm(FlaskForm):
     def validate_serial_numbers(self, validation_field):
         
         list_errors = []
-        type_device = TypeDevice.query.filter_by( title=self.type_device.data ).first()
+        type_device = TypeDevice.query.filter_by(title=self.type_device.data).first()
+        
+        pattern = re.compile("".join(["%s{%d}" % (CONVERTING_MASK_TO_REGEX[key], len(list(value))) 
+                            for key, value in itertools.groupby(type_device.serial_number_mask)]))
         
         for serial_number in validation_field.data.split():
-            result = re.match(type_device.serial_number_mask, serial_number)
+            result = pattern.match(serial_number)
             if result:
                 if Device.query.filter_by(serial_number=serial_number, type_device_id=type_device.id).first():
                     list_errors.append(f"Номер {serial_number} есть в БД")
