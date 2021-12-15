@@ -2,7 +2,6 @@ from flask import render_template
 from mkapp import app
 from serial_number_entry_form import SerialNumberEntryForm
 
-
 @app.route('/', methods=('GET', 'POST'))
 def index():
     form = SerialNumberEntryForm()
@@ -12,3 +11,4 @@ def index():
     
     form.serial_numbers.data = '\n'.join(form.serial_numbers_with_wrong_format)
     return render_template('index.html', form=form, message=message)
+

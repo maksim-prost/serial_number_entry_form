@@ -22,13 +22,12 @@ class SerialNumberEntryForm(FlaskForm):
     serial_numbers = TextAreaField(
         'Серийные номера',
         render_kw = {"rows":"10", "cols": "10"},
-        validators = [DataRequired(), ],
+        validators = [DataRequired(),]
         )
     type_device = SelectField(
         'Тип оборудования', 
-        choices = [td.title for td in TypeDevice.query.all() ],
+        choices = [td.title for td in TypeDevice.query.all() ]
         ) 
-
     submit = SubmitField("Добавить")
 
     def validate_serial_numbers(self, validation_field):

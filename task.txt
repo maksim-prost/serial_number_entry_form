@@ -15,10 +15,10 @@
 
 
 
-    Тип оборудования    Маска SN
+    Тип оборудования    Маска SN        Пример
 1   TP-Link TL-WR74     XXAAAAAXAA      11QAZWS2ER
-2   D-Link DIR-300      NXXAAXZXaa
-3   D-Link DIR-300 S    NXXAAXZXXX
+2   D-Link DIR-300      NXXAAXZXaa      20IREW@5ss 20IREW-3ss 20IREWY_4ss
+3   D-Link DIR-300 S    NXXAAXZXXX      0R6SDS-T5D
 
 Где 
 N – цифра от 0 до 9,
