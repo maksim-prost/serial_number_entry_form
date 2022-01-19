@@ -1,19 +1,24 @@
 Перед запуском приложения:
-  - установить зависимости
-    pip install -r requirements.txt 
+  - установить зависимости :
+
+        pip install -r requirements.txt 
    
-  - создать базу данных
-    python manage.py db init
-    python manage.py db_create
+  - создать базу данных:
+ 
+        python manage.py db init
+        python manage.py db_create
     
 Запуск приложения 
-    flask run
+      
+      flask run
 
 При обновлении модели данных (например, классов TypeDevice или Device):
+
     python manage.py db migrate
     python manage.py db upgrade
 
 Если нужно вернуться к предыдущему состоянию:
+
     python manage.py db downgrade
 
 В поле ввода вводятся  серийные номера, 
